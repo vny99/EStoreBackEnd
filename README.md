@@ -1,4 +1,5 @@
 #EStoreBackEnd
+
 A Java web application using spring boot 3.4.0 and running with JRE 17.
 [[TOC]]
 
@@ -50,8 +51,11 @@ Clone the repo, and open it in IntelliJ. Select the correct SDK (JDK 17) in File
 #How to run locally
 
 H2_DATABASE_URL=jdbc:h2:mem:testdb
+
 H2_DATABASE_USERNAME=sa
+
 H2_DATABASE_PASSWORD=password
+
 PRODUCTS_LOAD_URL=https://dummyjson.com/products
 
 Add above properties as env varialbes in your IDE before starting the application.
