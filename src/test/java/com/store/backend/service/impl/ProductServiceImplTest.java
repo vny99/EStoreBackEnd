@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Sort;
 
 import com.store.backend.dao.ProductDAO;
+import com.store.backend.dao.ProductDAOService;
 import com.store.backend.dao.ProductImageDAO;
 import com.store.backend.dao.ProductTagDAO;
 import com.store.backend.dao.ReviewDAO;
@@ -53,6 +54,8 @@ public class ProductServiceImplTest {
 	private ProductMapper productMapper;
 	@Mock
 	private ProductsLoadingHelper productsLoadingHelper;
+	@Mock
+	private ProductDAOService productDAOService;
 
 	private ProductDTO sampleProductDTO;
 	private ProductDAO sampleProductDAO;
@@ -180,6 +183,7 @@ public class ProductServiceImplTest {
 	public void testSaveProduct_success() {
 		when(productMapper.toDAO(any(ProductDTO.class))).thenReturn(sampleProductDAO);
 		when(productRepository.save(any(ProductDAO.class))).thenReturn(Mono.just(sampleProductDAO));
+		when(productDAOService.save(any(ProductDAO.class))).thenReturn(Mono.just(sampleProductDAO));
 		when(productMapper.toDTO(any(ProductDAO.class), anyList(), anyList(), anyList())).thenReturn(sampleProductDTO);
 
 		Mono<ProductDTO> result = productService.saveProduct(sampleProductDTO);
@@ -201,6 +205,8 @@ public class ProductServiceImplTest {
 		when(productReviewRepository.save(any(ReviewDAO.class))).thenReturn(Mono.just(sampleReviewDAO));
 		when(productImageRepository.save(any(ProductImageDAO.class))).thenReturn(Mono.just(sampleProductImageDAO));
 		when(productTagRepository.save(any(ProductTagDAO.class))).thenReturn(Mono.just(sampleProductTagDAO));
+		when(productDAOService.save(any(ProductDAO.class))).thenReturn(Mono.just(sampleProductDAO));
+
 
 		Mono<String> result = productService.loadProducts();
 
